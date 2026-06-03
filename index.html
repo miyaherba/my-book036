@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>變形的書 — 2026 暑期手工書藝術與感官探索工坊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        craft: {
+                            50: '#fcfbfa',   /* 手作紙張基底色 */
+                            100: '#f5f2eb',  /* 淺米色 */
+                            200: '#e8e2d5',  /* 襯托色 */
+                            700: '#c87a53',  /* 陶土紅 / 亮點色 */
+                            800: '#4a3c31',  /* 暖炭灰 / 文字主色 */
+                            900: '#2c221a',
+                        },
+                        botanical: {
+                            100: '#f0f4ee',  /* 草本綠背景 */
+                            600: '#6b7f67',  /* 植物深綠 */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif TC', 'serif'],
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; color: #4a3c31; }
+        .font-serif-title { font-family: 'Noto Serif TC', serif; }
+        /* 輕微紙張陰影 */
+        .paper-shadow { box-shadow: 0 4px 20px -2px rgba(74, 60, 49, 0.08); }
+    </style>
+</head>
+<body class="bg-craft-50 selection:bg-craft-700 selection:text-white" x-data="workshopApp()">
+
+    <header class="fixed top-0 w-full bg-craft-50/90 backdrop-blur-md border-b border-craft-200/60 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex flex-col">
+                <span class="font-serif-title font-bold text-xl tracking-wider text-craft-900">變形的書</span>
+                <span class="text-[10px] tracking-widest text-craft-700 uppercase -mt-0.5">Art & Sensory Workshop</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#intro" class="hover:text-craft-700 transition-colors">尋根與思辨</a>
+                <a href="#core" class="hover:text-craft-700 transition-colors">變形的核心</a>
+                <a href="#schedule" class="hover:text-craft-700 transition-colors">工坊單元</a>
+                <a href="#oracle" class="hover:text-craft-700 transition-colors">點子製造機</a>
+                <a href="#mentors" class="hover:text-craft-700 transition-colors">引路人</a>
+            </nav>
+            <a href="#register" class="bg-craft-800 hover:bg-craft-700 text-white px-5 py-2 rounded-full text-xs font-medium tracking-wide transition-all shadow-sm">
+                立即預約
+            </a>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-20 bg-gradient-to-b from-craft-100 to-craft-50 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
+            <span class="text-xs tracking-widest uppercase font-semibold text-craft-700 border-b border-craft-700/30 pb-2 inline-block">
+                2026 暑期手工書藝術與感官探索工坊
+            </span>
+            <h1 class="font-serif-title font-black text-5xl md:text-6xl text-craft-900 tracking-tight leading-tight">
+                變形的書
+            </h1>
+            <p class="font-serif-title text-lg md:text-xl text-craft-800 max-w-2xl mx-auto italic leading-relaxed">
+                「從書的『誕生』出發，一起探究在時光中變形的美學。」
+            </p>
+            <div class="w-12 h-[1px] bg-craft-700 mx-auto"></div>
+            <p class="text-sm text-craft-800 leading-relaxed max-w-xl mx-auto font-light">
+                書是指書架和螢幕上成冊的文本嗎？這個暑假，我們穿越熟悉的書本樣貌，重回訊息承載的起點。
+                在不同媒材的切割、折疊、捏塑等實驗過程中，帶領孩子體驗書的多重結構變化，激發內容的書出。
+            </p>
+            <div class="pt-4">
+                <a href="#schedule" class="bg-craft-800 hover:bg-craft-900 text-white px-8 py-3.5 rounded-md text-sm font-medium tracking-wider transition-all inline-block paper-shadow">
+                    探索工坊課表
+                </a>
+            </div>
+        </div>
+        <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-botanical-100 rounded-full blur-3xl opacity-60"></div>
+        <div class="absolute top-20 -right-16 w-80 h-80 bg-craft-200/50 rounded-full blur-3xl opacity-40"></div>
+    </section>
+
+    <section id="intro" class="py-24 bg-white border-y border-craft-200/40">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-craft-700 block">Chapter 01</span>
+                    <h2 class="font-serif-title font-bold text-3xl text-craft-900">尋根與思辨：<br>突破紙張與螢幕的邊界</h2>
+                    <p class="text-sm text-craft-800 leading-relaxed font-light">
+                        書寫是由什麼時候開始的？為了記錄一路的發現和洞見，人類刻畫各種符號，在任何能承載的物件上。
+                        這許多歪歪扭扭如同秘密般被保存下來的記錄，不曾停止變形。有時回到熟悉的紙本書上，有時走到環境、街道、自己的身上。
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-craft-50 rounded-xl border border-craft-200/50 space-y-3">
+                        <div class="text-craft-700 text-lg"><i class="fa-solid fa-scroll"></i></div>
+                        <h4 class="font-serif-title font-bold text-base text-craft-900">多元承載媒介</h4>
+                        <p class="text-xs text-craft-800 leading-relaxed font-light">在紙張發明前，人類將智慧與符號刻劃於甲骨、繩結、陶板、蠟版、刺青、羊皮與草葉之上。</p>
+                    </div>
+                    <div class="p-6 bg-craft-50 rounded-xl border border-craft-200/50 space-y-3">
+                        <div class="text-craft-700 text-lg"><i class="fa-solid fa-shirt"></i></div>
+                        <h4 class="font-serif-title font-bold text-base text-craft-900">編織「故事衣」</h4>
+                        <p class="text-xs text-craft-800 leading-relaxed font-light">甚至將漫長的歷史與部族傳說繪製、編織於服飾上，以物件作為訊息收容的載體。</p>
+                    </div>
+                    <div class="p-6 bg-craft-50 rounded-xl border border-craft-200/50 space-y-3">
+                        <div class="text-craft-700 text-lg"><i class="fa-solid fa-book-open"></i></div>
+                        <h4 class="font-serif-title font-bold text-base text-craft-900">裝幀工藝演進</h4>
+                        <p class="text-xs text-craft-800 leading-relaxed font-light">直至近代，才演變出我們熟知的線裝書、膠裝書與現代手工藝書等多元形態，探索訊息被收容的可能性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="core" class="py-24 bg-craft-100/40">
+        <div class="max-w-4xl mx-auto px-6 space-y-12 text-center">
+            <div class="space-y-3">
+                <span class="text-xs font-bold tracking-widest text-craft-700 uppercase block">Core Concept</span>
+                <h2 class="font-serif-title font-bold text-3xl text-craft-900">什麼是變形的書？</h2>
+                <p class="text-sm text-craft-800 font-light italic">如果沒有紙張與螢幕，那些希望使人銘記心中的事物，用什麼記載呢？</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="bg-white p-8 rounded-2xl border border-craft-200/40 paper-shadow space-y-4">
+                    <h3 class="font-serif-title font-bold text-lg text-craft-900 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-craft-700"></span> 載體與物理空間的突破
+                    </h3>
+                    <p class="text-xs text-craft-800 leading-relaxed font-light">
+                        是圍牆與鐵皮、陶磚、肌膚，還是納斯卡線的石陣？變形的書可能是柔軟的、堅硬的、甚至是會飛的、或真人演出的實體藝術。讓書動來動去，與孩子們從環境與遊戲的探索感受訊息的流動。
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl border border-craft-200/40 paper-shadow space-y-4">
+                    <h3 class="font-serif-title font-bold text-lg text-craft-900 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-craft-700"></span> 讀者與空間維度的界線
+                    </h3>
+                    <p class="text-xs text-craft-800 leading-relaxed font-light">
+                        書是要給誰看的？小寶寶、情人、還是天際外的外星人？書能跟我們一樣高嗎？書能藏得多小？在不同媒材的切磋實驗中，我們將打破閱讀的既定模式，創作異想天開的互動方式。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                <div class="space-y-3">
+                    <span class="text-xs font-bold tracking-widest text-craft-700 uppercase block">Syllabus</span>
+                    <h2 class="font-serif-title font-bold text-3xl text-craft-900">工坊雙月主題單元</h2>
+                </div>
+                <div class="inline-flex p-1 bg-craft-100 rounded-lg">
+                    <button @click="currentMonth = 7" :class="currentMonth === 7 ? 'bg-white text-craft-900 shadow-sm font-medium' : 'text-craft-800 opacity-60 hover:opacity-100'" class="px-5 py-2 rounded-md text-xs transition-all">
+                        七月份：尺寸、空間與透視
+                    </button>
+                    <button @click="currentMonth = 8" :class="currentMonth === 8 ? 'bg-white text-craft-900 shadow-sm font-medium' : 'text-craft-800 opacity-60 hover:opacity-100'" class="px-5 py-2 rounded-md text-xs transition-all">
+                        八月份：再生、自然與機關
+                    </button>
+                </div>
+            </div>
+
+            <div x-show="currentMonth === 7" x-transition class="space-y-12">
+                <div class="p-4 bg-craft-100/50 rounded-lg border-l-2 border-craft-700">
+                    <p class="text-xs font-serif-title text-craft-900 font-medium">七月核心：尺寸與空間摺疊 / 透視與敘事冒險</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-craft-700 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-craft-700 font-bold bg-craft-100 px-2 py-1 rounded">7/10</span>
+                                <span class="opacity-60">第一本：從簡單的線索出發</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">忽大忽小的神奇維度 (藏寶地圖貼紙書 + 胡桃守護項鍊書)</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                第一堂課，我們在工作室中尋寶與解碼！寶物是……習以為見的「書」！？邀請小孩尋找各自可以是書的寶物，聊聊尋獲的書如何被閱讀。
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>藏寶地圖貼紙卷軸：</strong>利用離型紙的單面亮膜與繪製寶物貼紙，在方向、足跡、密碼布置中，長出行跡莫測的寶藏卷軸。</li>
+                                <li><strong>胡桃守護項鍊小書：</strong>在卷軸尾聲製作神秘的胡桃項鍊小書作為獻給自己的寶藏，親身體驗訊息載體忽大忽小的尺寸變化。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-craft-700 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-craft-700 font-bold bg-craft-100 px-2 py-1 rounded">7/17</span>
+                                <span class="opacity-60">好長好長的書：誰在我的肚子裡</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">好長好長的肚子秘密</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                阿嬤的餐桌總是不斷變化出新菜色，填滿每一個圓鼓鼓的肚肚。這堂課的阿嬤將端出一盤盤待解的摺紙遊戲。
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>阿嬤餐桌的摺疊空間：</strong>一同拆解摺紙疊造的空間與趣味。瞧瞧摺疊這樣一個平易近人的動作在大自然、科技與生活上的運用。</li>
+                                <li><strong>風琴摺與紙上機關：</strong>透過反覆摺疊的風琴摺與紙上機關設計，製作一串好長好長的書，一同辦一桌吃得好飽好飽的豐盛宴席。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-craft-700 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-craft-700 font-bold bg-craft-100 px-2 py-1 rounded">7/24</span>
+                                <span class="opacity-60">視野限制下的視點空間</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">臥虎藏龍隧道書</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                當我們的視線受到限制，彷彿窩藏洞穴中的一隻小生物……
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>深穴中的限制視野：</strong>課前我們將利用各式眼罩，與小孩一同想像一隻深穴中的眼睛，如何突破堵在眼前的牆？從敲開的小小裂縫看見新世界。</li>
+                                <li><strong>蛇腹結構與透視景窗：</strong>延伸上一堂風琴摺的結構，增加景窗的透視效果。使用多彩度紙張與模擬角色，利用層疊可收縮的蛇腹結構製作深深遠遠的隧道書，任角色在色彩旅程中臥虎藏龍。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-craft-700 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-craft-700 font-bold bg-craft-100 px-2 py-1 rounded">7/31</span>
+                                <span class="opacity-60">隨機碰撞的故事軌跡</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">命運鎖鏈抽籤書</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                故事書裡的主角，是怎麼開始他的冒險呢？
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>隨機碰撞組合：</strong>透過抽籤抽出角色、地點、動作，像樹枝發芽長出樹葉般開花結果。和小孩討論隨機的奇幻組合。</li>
+                                <li><strong>催生創意的點子製造機：</strong>將每個小孩的點子串聯，以及各種「為什麼」的好奇追問，逐步發展成完整故事。抽籤「書」既是變形的書，也是催生新故事的點子製造機。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="currentMonth === 8" x-transition class="space-y-12">
+                <div class="p-4 bg-botanical-100 text-botanical-600 rounded-lg border-l-2 border-botanical-600">
+                    <p class="text-xs font-serif-title font-medium">八月核心：再生與自然收藏 / 動態與機關連動</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-botanical-600 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-botanical-600 font-bold bg-botanical-100 px-2 py-1 rounded">8/07</span>
+                                <span class="opacity-60">海海人生之塑膠袋的轉生</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">書的雨衣：塑膠袋的轉生</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                五顏六色漂啊漂，海龜眼中的繽紛美食，可能是飄到海裡的塑膠垃圾。生活中最常使用的塑膠袋，最後都去了哪裡呢？
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>回收塑料的美學重生：</strong>帶領孩子搜集、剪裁與設計生活中隨手可得、威脅海洋生態的五彩塑膠垃圾袋。</li>
+                                <li><strong>防水熨燙手工書衣：</strong>海龜有殼保護，手工書也需要。透過熨燙工藝融塑回收塑膠袋，製作成五彩防水書衣，在手工藝術中注入環境關懷。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-botanical-600 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-botanical-600 font-bold bg-botanical-100 px-2 py-1 rounded">8/14</span>
+                                <span class="opacity-60">當風吹進城市的時候</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">天空的標本：收藏抽屜書</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                少數適應都市生活的猛禽—鳳頭蒼鷹進入城市，在樹林蓊鬱的中興大學築巢。這一堂課，我們透過牠的故事，觀察在城市環境中，是什麼吸引我們拾起？
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>尋找鳳頭蒼鷹的蹤跡：</strong>引導孩子漫步於林間，進行標本搜尋任務遊戲，搜集飛鳥羽翅、碎石、金屬瓶蓋、成團狗毛等失物遺留。</li>
+                                <li><strong>暴風雪摺製本抽屜書：</strong>將拾得的物件，以特殊的暴風雪摺製本結構製作成抽屜書。透過收藏，安放我們茫茫路途中曾被牽動的心思。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-botanical-600 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-botanical-600 font-bold bg-botanical-100 px-2 py-1 rounded">8/20</span>
+                                <span class="opacity-60">視覺與聽覺的翻頁魔法</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">嘩啦啦春光乍洩瀑布書 (嘩啦啦嗶嗶啵啵)</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                是什麼魔法，可以讓書自動嘩啦嘩啦翻起來？
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>翻頁力學感受：</strong>藉由結構力學，讓書本在拉動瞬間產生自動翻頁的奇特動態，發出令人驚喜的嘩啦啦與嗶嗶啵啵聲響。</li>
+                                <li><strong>街頭守護獸摩托傳說：</strong>上街瞧瞧發出巨響的車輛可能是哪種昆蟲？想像摩托車上被什麼樣的神獸據守著？回到工作室繪製融入瀑布書，拉動機關讓賽扣（摩托車）上的守護獸輪番上陣。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border border-craft-200 rounded-2xl p-6 hover:border-botanical-600 transition-colors flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-mono text-botanical-600 font-bold bg-botanical-100 px-2 py-1 rounded">8/27</span>
+                                <span class="opacity-60">超級變變變機關劇</span>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-xl text-craft-900">東邪西毒機關書</h3>
+                            <p class="text-xs text-craft-800 font-light leading-relaxed">
+                                延伸抽籤書中籤詩組成故事的方式，一起來玩書的超級變變變！
+                            </p>
+                            <ul class="text-xs text-craft-800 space-y-2 pl-4 list-disc opacity-90">
+                                <li><strong>紙型機械與故事劇場：</strong>挑戰高難度的紙藝，將故事轉化為紙型機關。</li>
+                                <li><strong>讓畫頁隨著故事而躍動：</strong>在手指的輕按與推拉操作之中，讓平面畫面隨故事情節翻躍、開合，親手導演一場掌上的紙上劇場。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oracle" class="py-24 bg-botanical-100">
+        <div class="max-w-xl mx-auto px-6 text-center space-y-8">
+            <div class="space-y-2">
+                <span class="text-xs font-bold tracking-widest text-botanical-600 uppercase block">Interactive Experience</span>
+                <h2 class="font-serif-title font-bold text-3xl text-craft-900">命命鎖鏈：點子製造機</h2>
+                <p class="text-xs text-craft-800 font-light">搶先體驗 7/31 課程核心！隨機抽選出創意配方，碰撞出異想天開的故事：</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl paper-shadow border border-craft-200/40 text-left space-y-6">
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="p-3 bg-craft-50 rounded-lg border border-craft-200/40">
+                        <span class="text-[10px] uppercase text-craft-700 block mb-1">角色</span>
+                        <span class="font-serif-title font-bold text-sm text-craft-900" x-text="oracle.char">？</span>
+                    </div>
+                    <div class="p-3 bg-craft-50 rounded-lg border border-craft-200/40">
+                        <span class="text-[10px] uppercase text-craft-700 block mb-1">地點</span>
+                        <span class="font-serif-title font-bold text-sm text-craft-900" x-text="oracle.place">？</span>
+                    </div>
+                    <div class="p-3 bg-craft-50 rounded-lg border border-craft-200/40">
+                        <span class="text-[10px] uppercase text-craft-700 block mb-1">動作</span>
+                        <span class="font-serif-title font-bold text-sm text-craft-900" x-text="oracle.action">？</span>
+                    </div>
+                </div>
+                
+                <div class="p-4 bg-botanical-100/50 rounded-xl text-center">
+                    <p class="text-xs text-craft-800 font-serif-title leading-relaxed" x-text="oracleStory">
+                        點擊下方按鈕，搖動您的抽籤書...
+                    </p>
+                </div>
+                
+                <button @click="shakeOracle()" class="w-full bg-craft-800 hover:bg-craft-900 text-white py-3 rounded-lg text-xs font-medium tracking-wider transition-colors shadow-sm">
+                    搖動抽籤書！催生故事靈感
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentors" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 space-y-16">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold tracking-widest text-craft-700 uppercase block">Mentors</span>
+                <h2 class="font-serif-title font-bold text-3xl text-craft-900">專業引路人與創作導師</h2>
+                <div class="w-8 h-[1px] bg-craft-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="space-y-4 border-t border-craft-200 pt-6">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif-title font-bold text-xl text-craft-900">小勇</h3>
+                        <span class="text-xs text-craft-700 tracking-wider">手作與故事編織者</span>
+                    </div>
+                    <p class="text-xs text-craft-800 leading-relaxed font-light">
+                        喜愛塗塗畫畫與寫故事，熱衷於手工書的實驗、裝幀與製作。圖文故事作品《居民》、《狗與一只塑膠袋的浮游地誌》、《小金的聲音》曾榮獲國家藝術基金會與文化部創作補助。擅長帶領孩子在探索環境與媒材的遊戲中快樂創作。
+                    </p>
+
+                    <a href="https://www.facebook.com/littlebraveyon" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs text-craft-700 hover:text-craft-900 font-medium pt-2">
+                        作品連結 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                </div>
+                
+                <div class="space-y-4 border-t border-craft-200 pt-6">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif-title font-bold text-xl text-craft-900">木槿</h3>
+                        <span class="text-xs text-craft-700 tracking-wider">自然材質與生活工藝家</span>
+                    </div>
+                    <p class="text-xs text-craft-800 leading-relaxed font-light">
+                        擅長細心觀察日常環境中的媒材並進行雕琢與實驗。槌取植物纖維、木工、骨器雕塑皆是其涉足範疇。專長金屬工藝、陶藝、烘焙等各種圍繞生活所延展出的自然材質創作與飲食料理，引導孩子用多感官體驗雙手創作的驚喜。
+                    </p>
+
+                   <a href="https://www.instagram.com/mukuge2016" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs text-craft-700 hover:text-craft-900 font-medium pt-2">
+                        作品連結 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="py-24 bg-craft-100 border-t border-craft-200/60">
+        <div class="max-w-lg mx-auto px-6">
+            <div class="bg-white p-8 md:p-10 rounded-2xl paper-shadow border border-craft-200/50 space-y-8">
+                <div class="text-center space-y-2">
+                    <h2 class="font-serif-title font-bold text-2xl text-craft-900">一起加入這場變形之旅</h2>
+                    <p class="text-xs text-craft-800 font-light">翻開書本的新姿態，釋放雙手的創造力！</p>
+                </div>
+                
+                <form @submit.prevent="alert('預約申請已送出！我們將儘速與您聯繫。')" class="space-y-5 text-xs">
+                    <div class="space-y-1.5">
+                        <label class="font-medium text-craft-900">探險者姓名 / 學員姓名</label>
+                        <input type="text" required placeholder="請填寫真實姓名" class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="font-medium text-craft-900">聯絡電話</label>
+                        <input type="tel" required placeholder="例如：0912345678" class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="font-medium text-craft-900">欲預約的月份工坊</label>
+                        <select class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
+                            <option>七月份：尺寸、空間與透視冒險</option>
+                            <option>八月份：再生、自然與機關連動</option>
+                            <option>雙月完整參與</option>
+                        </select>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-craft-800 hover:bg-craft-900 text-white py-3.5 rounded-lg font-medium tracking-wider text-xs shadow-md transition-colors">
+                            送出預約申請
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="text-center text-[11px] opacity-60 space-y-1 pt-4 border-t border-craft-100">
+                    <p><i class="fa-solid fa-location-dot mr-1"></i> 變形的書工作室</p>
+                    <p>© 2026 暑期手工書藝術探索營</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-craft-900 text-craft-100/60 py-12 text-center text-xs tracking-wider">
+        <p>從書的「誕生」出發，一起探究在時光中變形的美學。</p>
+    </footer>
+
+    <script>
+        function workshopApp() {
+            return {
+                currentMonth: 7,
+                oracle: { char: '？', place: '？', action: '？' },
+                oracleStory: '點擊下方按鈕，搖動您的抽籤書...',
+                // 抽籤遊戲隨機池 (呼應 7/31 命運鎖鏈抽籤書內文)
+                pool: {
+                    chars: ['獅子', '鳳頭蒼鷹', '小生物', '文字精靈', '海龜'],
+                    places: ['海裡', '阿嬤的餐桌上', '深深的隧道裡', '城市的樹林中', '擾攘的街道上'],
+                    actions: ['打電話', '製作項鍊小書', '尋找天空標本', '披上防水雨衣', '玩超級變變變']
+                },
+                shakeOracle() {
+                    const c = this.pool.chars[Math.floor(Math.random() * this.pool.chars.length)];
+                    const p = this.pool.places[Math.floor(Math.random() * this.pool.places.length)];
+                    const a = this.pool.actions[Math.floor(Math.random() * this.pool.actions.length)];
+                    this.oracle = { char: c, place: p, action: a };
+                    this.oracleStory = `「當『${c}』在『${p}』正在『${a}』...」會變成什麼樣的奇幻故事呢？這就是催生新故事的點子製造機！`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
