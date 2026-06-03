@@ -402,29 +402,29 @@
                     <p class="text-xs text-craft-800 font-light">翻開書本的新姿態，釋放雙手的創造力！</p>
                 </div>
                 
-                <form @submit.prevent="alert('預約申請已送出！我們將儘速與您聯繫。')" class="space-y-5 text-xs">
-                    <div class="space-y-1.5">
-                        <label class="font-medium text-craft-900">探險者姓名 / 學員姓名</label>
-                        <input type="text" required placeholder="請填寫真實姓名" class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
-                    </div>
-                    <div class="space-y-1.5">
-                        <label class="font-medium text-craft-900">聯絡電話</label>
-                        <input type="tel" required placeholder="例如：0912345678" class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
-                    </div>
-                    <div class="space-y-1.5">
-                        <label class="font-medium text-craft-900">欲預約的月份工坊</label>
-                        <select class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
-                            <option>七月份：尺寸、空間與透視冒險</option>
-                            <option>八月份：再生、自然與機關連動</option>
-                            <option>雙月完整參與</option>
-                        </select>
-                    </div>
-                    <div class="pt-2">
-                        <button type="submit" class="w-full bg-craft-800 hover:bg-craft-900 text-white py-3.5 rounded-lg font-medium tracking-wider text-xs shadow-md transition-colors">
-                            送出預約申請
-                        </button>
-                    </div>
-                </form>
+<form @submit.prevent="alert('預約申請已送出！我們將儘速與您聯繫。'); window.open('https://forms.gle/6vuwH1hEwefMQutd6', '_blank');" class="space-y-5 text-xs">
+    <div class="space-y-1.5">
+        <label class="font-medium text-craft-900">探險者姓名 / 學員姓名</label>
+        <input type="text" required placeholder="請填寫真實姓名" class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
+    </div>
+    <div class="space-y-1.5">
+        <label class="font-medium text-craft-900">聯絡電話</label>
+        <input type="tel" required placeholder="例如：0912345678" class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
+    </div>
+    <div class="space-y-1.5">
+        <label class="font-medium text-craft-900">欲預約的月份工坊</label>
+        <select class="w-full px-4 py-3 bg-craft-50 border border-craft-200 rounded-lg focus:outline-none focus:border-craft-700 transition-colors">
+            <option>七月份：尺寸、空間與透視冒險</option>
+            <option>八月份：再生、自然與機關連動</option>
+            <option>雙月完整參與</option>
+        </select>
+    </div>
+    <div class="pt-2">
+        <button type="submit" class="w-full bg-craft-800 hover:bg-craft-900 text-white py-3.5 rounded-lg font-medium tracking-wider text-xs shadow-md transition-colors">
+            送出預約申請
+        </button>
+    </div>
+</form>
                 
                 <div class="text-center text-[11px] opacity-60 space-y-1 pt-4 border-t border-craft-100">
                     <p><i class="fa-solid fa-location-dot mr-1"></i> 變形的書工作室</p>
